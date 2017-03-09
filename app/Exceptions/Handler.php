@@ -4,10 +4,16 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
+use Api\Traits\InteractsWithResponse;
+
 
 class Handler extends ExceptionHandler
 {
+    use InteractsWithResponse;
+
     /**
      * A list of the exception types that should not be reported.
      *
@@ -44,6 +50,16 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        // Render validation exceptions
+        if ($exception instanceof ValidationException) {
+            return $this->respondValidationFails();
+        }
+
+        // Render model not found exceptions
+        if ($exception instanceof ModelNotFoundException) {
+            return $this->respondNotFound();
+        }
+
         return parent::render($request, $exception);
     }
 
