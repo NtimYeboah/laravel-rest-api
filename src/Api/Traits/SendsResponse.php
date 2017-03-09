@@ -4,7 +4,7 @@ namespace Api\Traits;
 
 use Illuminate\Http\Response;
 
-trait InteractsWithResponse
+trait SendsResponse
 {
     private $status;
 
@@ -107,6 +107,18 @@ trait InteractsWithResponse
     public function respondNotFound($message = 'Not Found')
     {
         return $this->setStatusCode(Response::HTTP_NOT_FOUND)
+            ->respondWithError($message);
+    }
+
+    /**
+     * Respond if there is an internal error when handling request
+     *
+     * @param string $message
+     * @return mixed
+     */
+    public function respondInternalServerError($message = 'Internal server error')
+    {
+        return $this->setStatusCode(Response::HTTP_INTERNAL_SERVER_ERROR)
             ->respondWithError($message);
     }
 }
