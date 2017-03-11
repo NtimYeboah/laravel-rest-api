@@ -7,12 +7,13 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
-use Api\Traits\InteractsWithResponse;
+use Illuminate\Database\QueryException;
+use Api\Traits\SendsResponse;
 
 
 class Handler extends ExceptionHandler
 {
-    use InteractsWithResponse;
+    use SendsResponse;
 
     /**
      * A list of the exception types that should not be reported.
