@@ -2,12 +2,24 @@
 
 namespace Api\Traits;
 
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Response;
 
 trait SendsResponse
 {
-    private $status;
+    /**
+     * Default status code
+     *
+     * @var int
+     */
+    private $status = Response::HTTP_OK;
 
+    /**
+     * Set a status code
+     *
+     * @param $status
+     * @return $this
+     */
     public function setStatusCode($status)
     {
         $this->status = $status;
@@ -15,6 +27,11 @@ trait SendsResponse
         return $this;
     }
 
+    /**
+     * Get a status code
+     *
+     * @return int
+     */
     public function getStatusCode()
     {
         return $this->status;
