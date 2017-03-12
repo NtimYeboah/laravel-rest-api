@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Answer;
 use Tests\TestCase;
 use App\User;
 use App\Question;
@@ -19,5 +20,15 @@ class QuestionTest extends TestCase
 
         $this->assertInstanceOf(Question::class, $question);
         $this->assertEquals(1, count($question->user));
+    }
+
+    public function test_question_has_many_answers()
+    {
+        $question = factory(Question::class)->create();
+
+        $answers = factory(Answer::class, 5)->create(['question_id' => $question->id]);
+
+        $this->assertInstanceOf(Answer::class, $answers->first());
+        $this->assertEquals(5, count($question->answers));
     }
 }
