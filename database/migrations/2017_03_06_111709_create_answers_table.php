@@ -17,6 +17,7 @@ class CreateAnswersTable extends Migration
             $table->increments('id');
             $table->longText('body');
             $table->unsignedInteger('user_id')->index();
+            $table->unsignedInteger('question_id')->index();
             $table->integer('up_vote')->nullable();
             $table->integer('down_vote')->nullable();
             $table->timestamps();
