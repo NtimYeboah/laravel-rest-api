@@ -42,4 +42,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Answer::class, 'user_id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'user_id');
+    }
 }
