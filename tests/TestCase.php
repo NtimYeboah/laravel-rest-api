@@ -28,4 +28,15 @@ abstract class TestCase extends BaseTestCase
             return factory(User::class)->create();
         });
     }
+
+    public function assertArrayHasKeys()
+    {
+        $args = func_get_args();
+
+        $array = array_shift($args);
+
+        foreach($args as $key) {
+            $this->assertArrayHasKey($key, $array);
+        }
+    }
 }
