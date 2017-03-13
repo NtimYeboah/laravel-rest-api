@@ -4,8 +4,8 @@ namespace Tests\Feature;
 
 use Api\Transformers\AnswerTransformer;
 use App\Answer;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 class AnswerTransformerTest extends TestCase
 {

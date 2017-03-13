@@ -5,8 +5,8 @@ namespace Tests\Feature;
 use Api\Transformers\CommentTransformer;
 use App\Comment;
 use App\Question;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 class CommentTransformerTest extends TestCase
 {
@@ -26,8 +26,8 @@ class CommentTransformerTest extends TestCase
 
         $this->question = factory(Question::class)->create();
         $this->comment = factory(Comment::class)->create([
-            'commentable_id' => $this->question->id,
-            'commentable_type' => get_class($this->question)
+            'commentable_id'   => $this->question->id,
+            'commentable_type' => get_class($this->question),
         ]);
     }
 

@@ -24,7 +24,7 @@ abstract class TestCase extends BaseTestCase
 
     public function setAuthUser()
     {
-        $this->request->setUserResolver(function() {
+        $this->request->setUserResolver(function () {
             return factory(User::class)->create();
         });
     }
@@ -35,7 +35,7 @@ abstract class TestCase extends BaseTestCase
 
         $array = array_shift($args);
 
-        foreach($args as $key) {
+        foreach ($args as $key) {
             $this->assertArrayHasKey($key, $array);
         }
     }

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Api\Traits\SendsResponse;
 use App\Http\Requests\QuestionRequest;
+use App\Jobs\AddQuestionJob;
 use App\Question;
 use Illuminate\Http\Request;
-use Api\Traits\SendsResponse;
-use App\Jobs\AddQuestionJob;
 
 class QuestionsController extends Controller
 {
@@ -16,6 +16,7 @@ class QuestionsController extends Controller
      * Display a listing of the resource.
      *
      * @param Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -41,13 +42,14 @@ class QuestionsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param QuestionRequest|Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(QuestionRequest $request)
     {
         try {
             dispatch(new AddQuestionJob($request, new Question()));
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             return $this->respondInternalServerError();
         }
 
@@ -57,7 +59,8 @@ class QuestionsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -70,7 +73,8 @@ class QuestionsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -81,8 +85,9 @@ class QuestionsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -93,7 +98,8 @@ class QuestionsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

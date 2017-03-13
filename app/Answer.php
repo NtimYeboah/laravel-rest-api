@@ -10,7 +10,7 @@ class Answer extends Model
      * @var array
      */
     protected $fillable = [
-        'body', 'user_id', 'up_vote', 'down_vote', 'question_id'
+        'body', 'user_id', 'up_vote', 'down_vote', 'question_id',
     ];
 
     /**

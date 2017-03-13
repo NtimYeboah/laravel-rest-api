@@ -3,8 +3,8 @@
 namespace Tests\Feature;
 
 use App\Question;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 class QuestionsTest extends TestCase
 {
@@ -19,7 +19,7 @@ class QuestionsTest extends TestCase
         $response->assertStatus(201)
             ->assertExactJson([
                 'message' => 'Resource created',
-                'code' => 201
+                'code'    => 201,
             ]);
     }
 
@@ -31,9 +31,9 @@ class QuestionsTest extends TestCase
 
         $response->assertStatus(200)
             ->assertJson([
-                'total' => 120,
-                'per_page' => 30,
-                'current_page' => 1
+                'total'        => 120,
+                'per_page'     => 30,
+                'current_page' => 1,
             ]);
     }
 
