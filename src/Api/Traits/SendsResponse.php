@@ -3,6 +3,8 @@
 namespace Api\Traits;
 
 use Illuminate\Http\Response;
+use Spatie\Fractal\Fractal;
+use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 
 trait SendsResponse
 {
@@ -42,12 +44,50 @@ trait SendsResponse
      *
      * @param $content
      * @param array $headers
-     *
      * @return mixed
      */
     public function response($content, $headers = [])
     {
         return response()->json($content, $this->getStatusCode(), $headers);
+    }
+
+    /**
+     * Respond with a transformed collection
+     *
+     * @param $collection
+     * @param $transformer
+     * @param string $message
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function respondWithCollection($collection, $transformer, $message = 'OK')
+    {
+        $data = Fractal::create()
+            ->collection($collection, $transformer)
+            ->paginateWith(new IlluminatePaginatorAdapter($collection))
+            ->toArray();
+
+        return $this->response($data, [
+            'message' => $message,
+            'code' => $this->getStatusCode()
+        ]);
+    }
+
+    /**
+     * Respond with a single item
+     *
+     * @param $item
+     * @param $transformer
+     * @param string $message
+     * @return mixed
+     */
+    public function respondWithItem($item, $transformer, $message = 'OK')
+    {
+        $data = Fractal::create()->item($item, $transformer)->toArray();
+
+        return $this->response($data, [
+            'message' => $message,
+            'code' => $this->getStatusCode()
+        ]);
     }
 
     /**

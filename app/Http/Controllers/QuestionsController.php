@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Api\Traits\SendsResponse;
+use Api\Transformers\QuestionTransformer;
 use App\Http\Requests\QuestionRequest;
 use App\Jobs\AddQuestionJob;
 use App\Question;
@@ -25,7 +26,7 @@ class QuestionsController extends Controller
 
         $questions = Question::paginate($limit);
 
-        return $this->response($questions);
+        return $this->respondWithCollection($questions, new QuestionTransformer());
     }
 
     /**
@@ -67,7 +68,7 @@ class QuestionsController extends Controller
     {
         $question = Question::findOrFail($id);
 
-        return $this->response($question);
+        return $this->respondWithItem($question, new QuestionTransformer());
     }
 
     /**

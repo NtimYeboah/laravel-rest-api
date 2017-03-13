@@ -31,9 +31,8 @@ class QuestionsTest extends TestCase
 
         $response->assertStatus(200)
             ->assertJson([
-                'total'        => 120,
-                'per_page'     => 30,
-                'current_page' => 1,
+                'data' => [],
+                'meta' => []
             ]);
     }
 
@@ -43,7 +42,10 @@ class QuestionsTest extends TestCase
 
         $response = $this->getJson("/api/v1/questions/{$questions->first()->id}");
 
-        $response->assertStatus(200);
+        $response->assertStatus(200)
+            ->assertJson([
+                'data' => []
+            ]);
     }
 
     public function test_response_when_validation_fails()
