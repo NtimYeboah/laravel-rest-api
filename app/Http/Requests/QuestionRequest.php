@@ -25,7 +25,7 @@ class QuestionRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            'body' => 'required'
+            'body'  => 'required',
         ];
     }
 }

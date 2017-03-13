@@ -5,8 +5,8 @@ namespace Tests\Unit;
 use App\Answer;
 use App\Question;
 use App\User;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 class AnswerTest extends TestCase
 {

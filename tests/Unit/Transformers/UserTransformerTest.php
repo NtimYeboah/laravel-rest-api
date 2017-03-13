@@ -4,8 +4,8 @@ namespace Tests\Feature;
 
 use Api\Transformers\UserTransformer;
 use App\User;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 class UserTransformerTest extends TestCase
 {

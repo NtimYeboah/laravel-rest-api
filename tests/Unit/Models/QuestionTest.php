@@ -3,10 +3,10 @@
 namespace Tests\Unit;
 
 use App\Answer;
-use Tests\TestCase;
-use App\User;
 use App\Question;
+use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 class QuestionTest extends TestCase
 {

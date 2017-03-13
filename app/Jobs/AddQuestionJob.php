@@ -5,7 +5,6 @@ namespace App\Jobs;
 use App\Question;
 use Illuminate\Http\Request;
 
-
 class AddQuestionJob
 {
     /**
@@ -20,7 +19,7 @@ class AddQuestionJob
     /**
      * Create a new job instance.
      *
-     * @param Request $request
+     * @param Request  $request
      * @param Question $question
      */
     public function __construct(Request $request, Question $question)
@@ -40,11 +39,11 @@ class AddQuestionJob
     }
 
     /**
-     * Create question and save it to the database
+     * Create question and save it to the database.
      */
     private function createQuestion()
     {
-        foreach($this->question->getFillable() as $fillable) {
+        foreach ($this->question->getFillable() as $fillable) {
             if ($this->request->has($fillable)) {
                 $this->question->{$fillable} = $this->request->get($fillable);
             }

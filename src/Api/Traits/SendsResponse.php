@@ -2,22 +2,22 @@
 
 namespace Api\Traits;
 
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Response;
 
 trait SendsResponse
 {
     /**
-     * Default status code
+     * Default status code.
      *
      * @var int
      */
     private $status = Response::HTTP_OK;
 
     /**
-     * Set a status code
+     * Set a status code.
      *
      * @param $status
+     *
      * @return $this
      */
     public function setStatusCode($status)
@@ -28,7 +28,7 @@ trait SendsResponse
     }
 
     /**
-     * Get a status code
+     * Get a status code.
      *
      * @return int
      */
@@ -38,10 +38,11 @@ trait SendsResponse
     }
 
     /**
-     * Return response to client
+     * Return response to client.
      *
      * @param $content
      * @param array $headers
+     *
      * @return mixed
      */
     public function response($content, $headers = [])
@@ -50,9 +51,10 @@ trait SendsResponse
     }
 
     /**
-     * Return error response
+     * Return error response.
      *
      * @param string $message
+     *
      * @return mixed
      */
     public function respondWithError($message = 'An error occurred while performing the operation')
@@ -60,29 +62,31 @@ trait SendsResponse
         return $this->response([
             'error' => [
                 'message' => $message,
-                'code' => $this->getStatusCode()
-            ]
+                'code'    => $this->getStatusCode(),
+            ],
         ]);
     }
 
     /**
-     * Return when request is successful
+     * Return when request is successful.
      *
      * @param string $message
+     *
      * @return mixed
      */
     public function respondWithSuccess($message = 'Ok')
     {
         return $this->response([
             'message' => $message,
-            'code' => $this->getStatusCode()
+            'code'    => $this->getStatusCode(),
         ]);
     }
 
     /**
-     * Respond when validation fails
+     * Respond when validation fails.
      *
      * @param string $message
+     *
      * @return mixed
      */
     public function respondValidationFails($message = 'Unprocessable entity')
@@ -92,9 +96,10 @@ trait SendsResponse
     }
 
     /**
-     * Respond when resource is created
+     * Respond when resource is created.
      *
      * @param string $message
+     *
      * @return mixed
      */
     public function respondCreated($message = 'Resource created')
@@ -104,9 +109,10 @@ trait SendsResponse
     }
 
     /**
-     * Respond when resource is updated
+     * Respond when resource is updated.
      *
      * @param string $message
+     *
      * @return mixed
      */
     public function respondUpdated($message = 'Resource updated')
@@ -116,9 +122,10 @@ trait SendsResponse
     }
 
     /**
-     * Respond when resource is not found
+     * Respond when resource is not found.
      *
      * @param string $message
+     *
      * @return mixed
      */
     public function respondNotFound($message = 'Not Found')
@@ -128,9 +135,10 @@ trait SendsResponse
     }
 
     /**
-     * Respond if there is an internal error when handling request
+     * Respond if there is an internal error when handling request.
      *
      * @param string $message
+     *
      * @return mixed
      */
     public function respondInternalServerError($message = 'Internal server error')

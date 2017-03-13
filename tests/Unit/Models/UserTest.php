@@ -2,12 +2,12 @@
 
 namespace Tests\Unit;
 
+use App\Answer;
+use App\Comment;
 use App\Question;
 use App\User;
-use App\Answer;
-use Tests\TestCase;
-use App\Comment;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 class UserTest extends TestCase
 {
@@ -39,9 +39,9 @@ class UserTest extends TestCase
         $question = factory(Question::class)->create();
 
         $comments = factory(Comment::class, 5)->create([
-            'user_id' => $user->id,
-            'commentable_id' => $question->id,
-            'commentable_type' => get_class($question)
+            'user_id'          => $user->id,
+            'commentable_id'   => $question->id,
+            'commentable_type' => get_class($question),
         ]);
 
         $this->assertInstanceOf(Comment::class, $comments->first());
