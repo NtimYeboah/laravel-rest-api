@@ -56,14 +56,16 @@ trait SendsResponse
      *
      * @param $collection
      * @param $transformer
+     * @param array $includes
      * @param string $message
      * @return \Illuminate\Http\JsonResponse
      */
-    public function respondWithCollection($collection, $transformer, $message = 'OK')
+    public function respondWithCollection($collection, $transformer, $includes = [], $message = 'OK')
     {
         $data = Fractal::create()
             ->collection($collection, $transformer)
             ->paginateWith(new IlluminatePaginatorAdapter($collection))
+            ->parseIncludes($includes)
             ->toArray();
 
         return $this->response($data, [

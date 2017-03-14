@@ -26,7 +26,7 @@ class QuestionsController extends Controller
 
         $questions = Question::paginate($limit);
 
-        return $this->respondWithCollection($questions, new QuestionTransformer());
+        return $this->respondWithCollection($questions, new QuestionTransformer(), ['questions, comments']);
     }
 
     /**

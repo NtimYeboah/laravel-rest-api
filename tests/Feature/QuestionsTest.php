@@ -32,7 +32,7 @@ class QuestionsTest extends TestCase
         $response->assertStatus(200)
             ->assertJson([
                 'data' => [],
-                'meta' => []
+                'meta' => [],
             ]);
     }
 
