@@ -14,6 +14,11 @@ class QuestionsController extends Controller
     use SendsResponse;
 
     /**
+     * Pagination limit
+     */
+    const LIMIT = 30;
+
+    /**
      * Display a listing of the resource.
      *
      * @param Request $request
@@ -22,7 +27,7 @@ class QuestionsController extends Controller
      */
     public function index(Request $request)
     {
-        $limit = $request->get('limit') ?: 30;
+        $limit = $request->get('limit') ?: QuestionsController::LIMIT;
 
         $questions = Question::paginate($limit);
 
@@ -51,6 +56,8 @@ class QuestionsController extends Controller
         try {
             dispatch(new AddQuestionJob($request, new Question()));
         } catch (\Exception $e) {
+            logger()->error('An error occurred whiles storing a question', [$e->getMessage()]);
+
             return $this->respondInternalServerError();
         }
 
