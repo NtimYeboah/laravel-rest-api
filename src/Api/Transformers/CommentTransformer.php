@@ -19,7 +19,7 @@ class CommentTransformer extends TransformerAbstract
      *
      * @var array
      */
-    public $defaultIncludes = ['user', 'commentable'];
+    public $defaultIncludes = ['user'];
 
     /**
      * Turn this item object into a generic array.
@@ -31,9 +31,9 @@ class CommentTransformer extends TransformerAbstract
     public function transform(Comment $comment)
     {
         return [
-            'id'               => (int) $comment->id,
-            'body'             => $comment->body,
-            'commentable_type' => $comment->commentable_type,
+            'id'   => (int) $comment->id,
+            'body' => $comment->body,
+            'type' => $comment->commentable_type,
         ];
     }
 

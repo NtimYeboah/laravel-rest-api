@@ -20,4 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['prefix' => 'v1'], function () {
     Route::resource('questions', 'QuestionsController');
     Route::resource('question.answers', 'AnswersController', ['only' => ['index','store', 'show', 'update']]);
+    Route::resource('question.comments', 'CommentsController', ['only' => ['index','store', 'show', 'update']]);
 });

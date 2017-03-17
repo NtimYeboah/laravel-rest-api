@@ -34,9 +34,9 @@ class CommentTransformerTest extends TestCase
     public function test_can_transform_comment()
     {
         $transformedComment = $this->commentTransformer->transform($this->comment);
-
+        
         $this->assertInternalType('array', $transformedComment);
-        $this->assertArrayHasKeys($transformedComment, 'id', 'body', 'commentable_type');
+        $this->assertArrayHasKeys($transformedComment, 'id', 'body', 'type');
     }
 
     public function test_include_user()
